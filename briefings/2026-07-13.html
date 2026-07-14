@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-13 브리핑 · 경쟁사 동향 아카이브</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🗞️</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="wrap narrow">
+    <a class="back" href="../index.html">← 아카이브 목록으로</a>
+    <header class="top" style="margin-bottom:0">
+      <div>
+        <div class="meta-date">2026-07-13 · 일요일</div>
+        <h1 class="detail-title">Initech 신규 제품 티저 공개</h1>
+      </div>
+      <div class="head-right">
+        <button class="btn" id="themeBtn" aria-label="테마 전환"><span id="themeIcon">🌙</span><span id="themeTxt">다크</span></button>
+      </div>
+    </header>
+
+    <div class="summary">Initech가 차기 제품 티저 페이지를 공개. 출시 시점과 타깃 세그먼트가 우리 로드맵과 겹칠 가능성이 있어 모니터링이 필요합니다.</div>
+    <div class="chips">
+      <span class="chip-k">경쟁사 · Initech</span><span class="chip-k">제품</span>
+    </div>
+
+    <p class="section-h">오늘 챙겨볼 항목 · 2건</p>
+    <div class="items">
+      <div class="item">
+        <div class="item-top">
+          <span class="pill cat" style="background:var(--s3)">Initech</span>
+          <span class="pill tone-threat">위협</span>
+        </div>
+        <p class="item-content">차기 제품 "Project Nova" 티저 랜딩을 공개. 상세 스펙은 비공개지만 "3분기 공개"라는 문구가 포함됨.</p>
+        <div class="item-why"><b>왜 중요한가</b> — 우리 하반기 출시 계획과 시점이 겹칠 수 있음. 메시징·출시 타이밍 조정 검토 필요.</div>
+        <div class="item-src">출처 · <a href="https://example.com/initech-nova" target="_blank" rel="noopener">example.com/initech-nova</a></div>
+      </div>
+
+      <div class="item">
+        <div class="item-top">
+          <span class="pill cat" style="background:var(--s3)">Initech</span>
+          <span class="pill tone-neutral">중립</span>
+        </div>
+        <p class="item-content">티저 공개 직후 소셜 반응은 제한적(언급량 소폭 증가). 아직 시장 관심이 크게 형성되지는 않음.</p>
+        <div class="item-why"><b>왜 중요한가</b> — 초기 반응이 미지근하므로 과잉 대응은 불필요. 관심도 추이만 추적.</div>
+        <div class="item-src">출처 · <a href="https://example.com/initech-buzz" target="_blank" rel="noopener">example.com/initech-buzz</a></div>
+      </div>
+    </div>
+
+    <footer class="note">
+      <strong>가공(샘플) 브리핑</strong>입니다. 회사명은 가상이며 출처 링크는 예시(example.com)입니다. 정성 태깅(위협·기회·중립)은 AI 추정치로 참고용입니다.
+    </footer>
+  </div>
+  <script>
+    var root=document.documentElement,b=document.getElementById('themeBtn'),ic=document.getElementById('themeIcon'),tx=document.getElementById('themeTxt');
+    function dark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+    function sync(){var d=dark();ic.textContent=d?'☀️':'🌙';tx.textContent=d?'라이트':'다크';}
+    b.addEventListener('click',function(){root.setAttribute('data-theme',dark()?'light':'dark');sync();});sync();
+  </script>
+</body>
+</html>

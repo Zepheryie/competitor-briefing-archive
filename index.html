@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>경쟁사 동향 브리핑 아카이브</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🗞️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <p class="eyebrow">경쟁사 인텔리전스</p>
+        <h1>동향 브리핑 아카이브</h1>
+        <p class="lede">매일 정리한 경쟁사 동향 브리핑을 날짜순으로 모아 둡니다. 카드를 누르면 그날의 상세 브리핑이 열립니다.</p>
+      </div>
+      <div class="head-right">
+        <span class="sample-pill">샘플 데이터</span>
+        <button class="btn" id="themeBtn" aria-label="테마 전환"><span id="themeIcon">🌙</span><span id="themeTxt">다크</span></button>
+      </div>
+    </header>
+
+    <div class="filters" role="group" aria-label="중요도 필터">
+      <span class="flabel">중요도</span>
+      <button class="fchip" data-imp="all" aria-pressed="true">전체</button>
+      <button class="fchip" data-imp="high" aria-pressed="false">상</button>
+      <button class="fchip" data-imp="mid" aria-pressed="false">중</button>
+    </div>
+
+    <p class="count" id="count">브리핑 3건</p>
+
+    <div class="cards" id="cards">
+      <a class="brief" href="briefings/2026-07-14.html" data-imp="high">
+        <div class="bd">2026-07-14 · 월요일</div>
+        <div class="bt">Globex API 팀 대규모 채용 · Acme 가격 인하 예고</div>
+        <div class="bs">Globex가 플랫폼 API 팀에 엔지니어 20명 채용을 시작했고, Acme는 주력 라인 가격을 다음 주 인하 공지할 예정. 두 움직임 모두 하반기 경쟁에 직접 영향을 줄 신호입니다.</div>
+        <div class="cmeta">
+          <span class="imp imp-high">중요도 상</span>
+          <span class="count">항목 3개</span>
+          <span class="ctag">Globex</span><span class="ctag">Acme</span>
+        </div>
+      </a>
+
+      <a class="brief" href="briefings/2026-07-13.html" data-imp="mid">
+        <div class="bd">2026-07-13 · 일요일</div>
+        <div class="bt">Initech 신규 제품 티저 공개</div>
+        <div class="bs">Initech가 차기 제품 티저 페이지를 공개. 출시 시점과 타깃 세그먼트가 우리 로드맵과 겹칠 가능성이 있어 모니터링이 필요합니다.</div>
+        <div class="cmeta">
+          <span class="imp imp-mid">중요도 중</span>
+          <span class="count">항목 2개</span>
+          <span class="ctag">Initech</span>
+        </div>
+      </a>
+
+      <a class="brief" href="briefings/2026-07-12.html" data-imp="mid">
+        <div class="bd">2026-07-12 · 토요일</div>
+        <div class="bt">Umbrella–Hooli 파트너십 논의 포착</div>
+        <div class="bs">업계 보도에서 Umbrella와 Hooli의 유통 파트너십 논의 정황이 언급됨. 확정될 경우 채널 경쟁 구도가 바뀔 수 있어 기회·위협을 함께 살펴야 합니다.</div>
+        <div class="cmeta">
+          <span class="imp imp-mid">중요도 중</span>
+          <span class="count">항목 2개</span>
+          <span class="ctag">Umbrella</span><span class="ctag">Hooli</span>
+        </div>
+      </a>
+    </div>
+    <p class="empty-note" id="emptyNote" style="display:none">해당 중요도의 브리핑이 없습니다.</p>
+
+    <footer class="note">
+      이 아카이브는 <strong>가공(샘플) 데이터</strong> 기반 정적 스냅샷입니다. 회사명(Globex·Acme·Initech·Umbrella·Hooli)은 모두 가상이며, 출처 링크도 예시(example.com)입니다.
+      실제로는 매일 정리한 브리핑이 이 목록에 카드로 쌓입니다. 공개 파일에는 데이터 스냅샷만 담기며 API 키는 포함되지 않습니다.
+    </footer>
+  </div>
+
+  <script>
+    var root=document.documentElement, b=document.getElementById('themeBtn'),
+        ic=document.getElementById('themeIcon'), tx=document.getElementById('themeTxt');
+    function dark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+    function sync(){var d=dark();ic.textContent=d?'☀️':'🌙';tx.textContent=d?'라이트':'다크';}
+    b.addEventListener('click',function(){root.setAttribute('data-theme',dark()?'light':'dark');sync();}); sync();
+
+    // importance filter
+    var cards=[].slice.call(document.querySelectorAll('#cards .brief'));
+    var countEl=document.getElementById('count'), emptyNote=document.getElementById('emptyNote');
+    document.querySelectorAll('.fchip').forEach(function(chip){
+      chip.addEventListener('click',function(){
+        document.querySelectorAll('.fchip').forEach(function(c){c.setAttribute('aria-pressed','false');});
+        chip.setAttribute('aria-pressed','true');
+        var imp=chip.getAttribute('data-imp'), shown=0;
+        cards.forEach(function(card){
+          var match = imp==='all' || card.getAttribute('data-imp')===imp;
+          card.classList.toggle('hidden', !match); if(match) shown++;
+        });
+        countEl.textContent='브리핑 '+shown+'건';
+        emptyNote.style.display = shown===0 ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
